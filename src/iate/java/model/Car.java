@@ -1,4 +1,4 @@
-package iate.app.model;
+package iate.java.model;
 
 public class Car {
     private final String VIN;
