@@ -5,6 +5,10 @@ public enum DriveUnit {
     BACK("Задний"),
     FULL("Полный");
 
+    public String getTitle() {
+        return title;
+    }
+
     private final String title;
 
     DriveUnit(String title) {

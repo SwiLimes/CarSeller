@@ -9,6 +9,10 @@ public enum CarShape {
 
     private final String title;
 
+    public String getTitle() {
+        return title;
+    }
+
     CarShape(String title) {
         this.title = title;
     }

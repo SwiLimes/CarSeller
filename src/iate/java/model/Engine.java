@@ -8,6 +8,11 @@ public enum Engine {
 
     private final String title;
 
+
+    public String getTitle() {
+        return title;
+    }
+
     Engine(String title) {
         this.title = title;
     }

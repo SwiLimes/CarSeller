@@ -6,7 +6,6 @@ public enum Brand {
 
     private final String title;
 
-
     Brand(String title) {
         this.title = title;
     }
