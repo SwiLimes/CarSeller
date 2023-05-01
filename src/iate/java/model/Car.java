@@ -6,6 +6,8 @@ public class Car {
     private String year;
     private Brand model;
     private Engine engine;
+    //private CarType type;
+
     private CarType type;
     private CarShape shape;
     private DriveUnit driveUnit;
