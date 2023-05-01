@@ -28,38 +28,38 @@ public class CarList extends JFrame {
     public CarList(){
 
         //region IMAGE SCALING
-        ImageIcon icon = new ImageIcon("C:/Users/Thinkpad/Documents/CarSeller-master/Icons/menu.png");
+        ImageIcon icon = new ImageIcon("Icons/menu.png");
         Image image = icon.getImage();
         Image NewIcon = image.getScaledInstance(25,25, Image.SCALE_SMOOTH);
         icon = new ImageIcon(NewIcon);
         label1.setIcon(icon);
 
-        ImageIcon usericon = new ImageIcon("C:/Users/Thinkpad/Documents/CarSeller-master/Icons/user.png");
+        ImageIcon usericon = new ImageIcon("Icons/user.png");
         Image image2 = usericon.getImage();
         Image NewIcon2 = image2.getScaledInstance(25,25, Image.SCALE_SMOOTH);
         usericon = new ImageIcon(NewIcon2);
         button1.setIcon(usericon);
 
 
-        ImageIcon carsicon = new ImageIcon("C:/Users/Thinkpad/Documents/CarSeller-master/Icons/cars.png");
+        ImageIcon carsicon = new ImageIcon("Icons/cars.png");
         Image image3 = carsicon.getImage();
         Image NewIcon3 = image3.getScaledInstance(25,25, Image.SCALE_SMOOTH);
         carsicon = new ImageIcon(NewIcon3);
         button2.setIcon(carsicon);
 
-        ImageIcon newcar = new ImageIcon("C:/Users/Thinkpad/Documents/CarSeller-master/Icons/new.png");
+        ImageIcon newcar = new ImageIcon("Icons/new.png");
         Image image4 = newcar.getImage();
         Image NewIcon4 = image4.getScaledInstance(25,25, Image.SCALE_SMOOTH);
         newcar = new ImageIcon(NewIcon4);
         button3.setIcon(newcar);
 
-        ImageIcon info = new ImageIcon("C:/Users/Thinkpad/Documents/CarSeller-master/Icons/info.png");
+        ImageIcon info = new ImageIcon("Icons/info.png");
         Image image5 = info.getImage();
         Image NewIcon5 = image5.getScaledInstance(25,25, Image.SCALE_SMOOTH);
         info = new ImageIcon(NewIcon5);
         button4.setIcon(info);
 
-        ImageIcon exit = new ImageIcon("C:/Users/Thinkpad/Documents/CarSeller-master/Icons/exit.png");
+        ImageIcon exit = new ImageIcon("Icons/exit.png");
         Image image6 = exit.getImage();
         Image NewIcon6 = image6.getScaledInstance(25,25, Image.SCALE_SMOOTH);
         exit = new ImageIcon(NewIcon6);
