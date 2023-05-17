@@ -1,7 +1,7 @@
 package iate.java.storage;
 
 import iate.api.CarDao;
-import iate.api.CarDaoImpl;
+import iate.java.dao.CarDaoImpl;
 import iate.java.model.Car;
 
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class CarStorage  implements Storage<Car>{
 
-    private static Map<String,Car> cars = new HashMap<>();
+    private static final Map<String,Car> cars = new HashMap<>();
     private static final CarDao DAO = new CarDaoImpl();
     
     @Override
