@@ -5,14 +5,15 @@ public class Car {
     private final String brandName;
     private final String modelName;
     private final String year;
-//    private final CarType type;
-//    private final Engine engine;
-//    private final CarShape shape;
-//    private final DriveUnit driveUnit;
-//    private final Transmission transmission;
-//    private final String equipment;
-//    private final double consumption;
-//    private final double clearance;
+    private String consumption;
+    private Brand model;
+    private Engine engine;
+    //private CarType type;
+
+    private CarType type;
+    private CarShape shape;
+    private DriveUnit driveUnit;
+    private Transmission transmission;
 
     public String getVin() {
         return vin;
