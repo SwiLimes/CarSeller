@@ -42,7 +42,7 @@
           <text value="ФИЛЬТРЫ"/>
         </properties>
       </component>
-      <component id="22157" class="javax.swing.JButton" binding="ПРИМЕНИТЬButton" default-binding="true">
+      <component id="22157" class="javax.swing.JButton" binding="butApply">
         <constraints>
           <grid row="8" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -67,7 +67,9 @@
             <preferred-size width="475" height="150"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <toolTipText value=""/>
+        </properties>
       </component>
       <component id="7131d" class="javax.swing.JButton" binding="button1" default-binding="true">
         <constraints>
@@ -160,12 +162,12 @@
           <text value=" "/>
         </properties>
       </component>
-      <component id="bb084" class="javax.swing.JLabel">
+      <component id="bb084" class="javax.swing.JLabel" binding="vin">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Цена ОТ"/>
+          <text value="VIN NUMBER"/>
         </properties>
       </component>
       <component id="1590a" class="javax.swing.JLabel">
@@ -176,7 +178,7 @@
           <text value="Цена ДО"/>
         </properties>
       </component>
-      <component id="a1f9a" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="a1f9a" class="javax.swing.JTextField" binding="vinField">
         <constraints>
           <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>

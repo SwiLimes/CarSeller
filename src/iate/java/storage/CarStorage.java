@@ -14,8 +14,16 @@ public class CarStorage {
     private static final CarDao DAO = new CarDaoImpl();
 
 
-    List<Car> getAllCars() { // получение всех машин
+    public List<Car> getAllCars() { // получение всех машин
         return DAO.getAllCars();
+    }
+
+    public List<Car> getCarByFilter() {
+        return DAO.getAllCars();
+    }
+
+    public Car getCarByVin(String vin) {
+        return DAO.getCarByVin(vin);
     }
 
 

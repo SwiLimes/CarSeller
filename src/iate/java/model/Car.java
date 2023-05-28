@@ -120,7 +120,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
+        return "Машина{" +
                 "vin='" + vin + '\'' +
                 ", brandName='" + brandName + '\'' +
                 ", modelName='" + modelName + '\'' +

@@ -1,16 +1,21 @@
 package GUI;
 
+import iate.java.model.Car;
+import iate.java.storage.CarStorage;
+import iate.java.storage.ModelStorage;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.RoundingMode;
+import java.awt.event.ItemEvent;
+
 
 public class CarList extends JFrame {
 
     private JPanel panel1;
-    private JButton ПРИМЕНИТЬButton;
+    private JButton butApply;
     private JLabel label1;
     private JList list1;
     private JButton button1;
@@ -22,11 +27,51 @@ public class CarList extends JFrame {
     private JComboBox comboBox2;
     private JComboBox comboBox3;
     private JComboBox comboBox4;
-    private JTextField textField1;
+    private JTextField vinField;
     private JTextField textField2;
+    private JLabel vin;
+
+    private CarStorage carStorage = new CarStorage();
+
+    private ModelStorage modelStorage = new ModelStorage();
 
     public CarList(){
 
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for(Car i : carStorage.getAllCars() ){
+            model.addElement(i.toString());
+        }
+
+        for(String i : modelStorage.getAllBrands() ){
+            comboBox1.addItem(i);
+        }
+
+        comboBox1.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                // проверяем, что выбран новый элемент
+                comboBox2.removeAllItems();
+                for(String i : modelStorage.getModelsByBrand((String) e.getItem())){
+                    comboBox2.addItem(i);
+                }
+            }
+        });
+
+        butApply.addActionListener(new ActionListener() {
+                                      @Override
+                                      public void actionPerformed(ActionEvent e) {
+                                          if(vinField.getText()!=""){
+                                              list1.removeAll();
+                                              model.removeAllElements();
+                                              model.addElement(carStorage.getCarByVin(vinField.getText()).toString());
+                                              list1.setModel(model);
+                                          }
+                                      }
+                                  });
+
+
+
+        list1.setModel(model);
         //region IMAGE SCALING
         ImageIcon icon = new ImageIcon("Icons/menu.png");
         Image image = icon.getImage();
@@ -76,7 +121,7 @@ public class CarList extends JFrame {
         //region BORDERS and COLORS
         LineBorder lineBorder = new LineBorder(Color.gray, 2, true);
         setLocationRelativeTo(null);
-        setSize(800, 480);
+        setSize(1000, 1000);
         panel1.setBackground(Color.LIGHT_GRAY);
         //endregion
 

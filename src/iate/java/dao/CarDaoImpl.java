@@ -2,8 +2,8 @@ package iate.java.dao;
 
 import iate.api.CarDao;
 import iate.java.model.Car;
+import iate.java.model.Filter;
 import iate.java.sql.SqlHelper;
-import iate.java.utils.DBConfig;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,10 +15,10 @@ import java.util.List;
 public class CarDaoImpl implements CarDao {
 
     private final SqlHelper sqlHelper;
-    private static final DBConfig dbConfig = DBConfig.get();
+//    private static final DBConfig dbConfig = DBConfig.get();
 
     public CarDaoImpl() {
-        this(dbConfig.getDbUrl(),dbConfig.getDbUser(), dbConfig.getDbPass());
+        this("jdbc:postgresql://localhost:5432/carseller","postgres", "postgres");
     }
 
     public CarDaoImpl(String dbName, String dbUser, String dbPass) {
@@ -103,6 +103,11 @@ public class CarDaoImpl implements CarDao {
             }
             return cars;
         });
+    }
+
+    @Override
+    public List<Car> getCarsByFilter(Filter filter) {
+        return null;
     }
 
     private void initCreateUpdateStatement(Car car, PreparedStatement ps) throws SQLException {
