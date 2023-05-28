@@ -5,25 +5,18 @@ import iate.java.dao.CarDaoImpl;
 import iate.java.model.Car;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class CarStorage  implements Storage<Car>{
+public class CarStorage {
 
-    private static final Map<String,Car> cars = new HashMap<>();
+    private static final Map<String, Car> cars = new HashMap<>();
     private static final CarDao DAO = new CarDaoImpl();
-    
-    @Override
-    public void add(Car car) {
 
+
+    List<Car> getAllCars() { // получение всех машин
+        return DAO.getAllCars();
     }
 
-    @Override
-    public void delete(String str) {
 
-    }
-
-    @Override
-    public Car get(String str) {
-        return null;
-    }
 }

@@ -2,15 +2,8 @@ package iate.java.dao;
 
 import iate.api.CarDao;
 import iate.java.model.Car;
-import iate.java.model.CarShape;
-import iate.java.model.CarType;
-import iate.java.model.DriveUnit;
-import iate.java.model.Engine;
-import iate.java.model.EngineType;
-import iate.java.model.Transmission;
 import iate.java.sql.SqlHelper;
 import iate.java.utils.DBConfig;
-
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
