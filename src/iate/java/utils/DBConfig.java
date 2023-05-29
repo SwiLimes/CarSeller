@@ -1,6 +1,5 @@
 package iate.java.utils;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -10,9 +9,9 @@ import java.util.Properties;
 
 public class DBConfig {
 
-    private static final DBConfig INSTANCE = new DBConfig();
     private static final Path DB_PROPS = Paths.get("config/db.properties");
-    private static final Properties props = new Properties();
+    private static final DBConfig INSTANCE = new DBConfig();
+    private final Properties props = new Properties();
 
     public static DBConfig get() {
         return INSTANCE;

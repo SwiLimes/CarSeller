@@ -3,7 +3,9 @@ package iate.java.dao;
 import iate.api.CarDao;
 import iate.java.model.Car;
 import iate.java.sql.SqlHelper;
+import iate.java.utils.CarFilterCriterion;
 import iate.java.utils.DBConfig;
+import iate.java.utils.QueryUtils;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class CarDaoImpl implements CarDao {
 
@@ -97,6 +100,17 @@ public class CarDaoImpl implements CarDao {
     public List<Car> getAllCars() {
         return sqlHelper.execute("SELECT * FROM car;", ps -> {
             List<Car> cars = new ArrayList<>();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                cars.add(initCar(rs));
+            }
+            return cars;
+        });
+    }
+
+    public List<Car> getFilteredCars(Map<CarFilterCriterion, String> params) {
+        List<Car> cars = new ArrayList<>();
+        return sqlHelper.execute(QueryUtils.buildCarFilterQuery("SELECT * FROM car WHERE ", params), ps -> {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 cars.add(initCar(rs));
