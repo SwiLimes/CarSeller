@@ -31,4 +31,11 @@ create table car
     foreign key (brand_name, model_name) references brand
 );
 
+create table UserBase(
+    id int primary key not null ,
+    name varchar(20) not null ,
+    surname varchar(20) not null,
+    password varchar(20) not null
+);
+
 DROP table car;

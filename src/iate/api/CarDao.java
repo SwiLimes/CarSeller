@@ -2,6 +2,7 @@ package iate.api;
 
 import iate.java.model.Car;
 import iate.java.model.Filter;
+import iate.java.model.User;
 import iate.java.utils.CarFilterCriterion;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public interface CarDao {
     Car getCarByVin(String vin);
 
     List<Car> getAllCars();
+
+    User getUser();
 
     List<Car> getCarsByFilter(Filter filter);
 

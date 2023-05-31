@@ -3,6 +3,7 @@ package iate.java.dao;
 import iate.api.CarDao;
 import iate.java.model.Car;
 import iate.java.model.Filter;
+import iate.java.model.User;
 import iate.java.sql.SqlHelper;
 import iate.java.utils.CarFilterCriterion;
 import iate.java.utils.QueryUtils;
@@ -95,6 +96,18 @@ public class CarDaoImpl implements CarDao {
             return initCar(rs);
         });
     }
+
+    @Override
+    public User getUser() {
+        return sqlHelper.execute("SELECT * FROM UserBase LIMIT 1", ps -> {
+            ResultSet rs = ps.executeQuery();
+            if (!rs.next()) {
+                throw new RuntimeException();
+            }
+            return new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4));
+        });
+    }
+
     @Override
     public List<Car> getAllCars() {
         return sqlHelper.execute("SELECT * FROM car;", ps -> {
