@@ -95,7 +95,6 @@ public class CarDaoImpl implements CarDao {
             return initCar(rs);
         });
     }
-
     @Override
     public List<Car> getAllCars() {
         return sqlHelper.execute("SELECT * FROM car;", ps -> {
@@ -113,6 +112,7 @@ public class CarDaoImpl implements CarDao {
         return null;
     }
 
+    @Override
     public List<Car> getFilteredCars(Map<CarFilterCriterion, String> params) {
         List<Car> cars = new ArrayList<>();
         return sqlHelper.execute(QueryUtils.buildCarFilterQuery("SELECT * FROM car WHERE ", params), ps -> {
@@ -123,7 +123,6 @@ public class CarDaoImpl implements CarDao {
             return cars;
         });
     }
-
     private void initCreateUpdateStatement(Car car, PreparedStatement ps) throws SQLException {
         ps.setString(1, car.getBrandName());
         ps.setString(2, car.getModelName());

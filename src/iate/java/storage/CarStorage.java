@@ -3,6 +3,7 @@ package iate.java.storage;
 import iate.api.CarDao;
 import iate.java.dao.CarDaoImpl;
 import iate.java.model.Car;
+import iate.java.utils.CarFilterCriterion;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,8 +19,8 @@ public class CarStorage {
         return DAO.getAllCars();
     }
 
-    public List<Car> getCarByFilter() {
-        return DAO.getAllCars();
+    public List<Car> getCarByFilter(Map<CarFilterCriterion, String> params) {
+        return DAO.getFilteredCars(params);
     }
 
     public Car getCarByVin(String vin) {
