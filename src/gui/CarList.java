@@ -1,6 +1,7 @@
 package gui;
 
 import iate.java.model.Car;
+import iate.java.model.User;
 import iate.java.storage.CarStorage;
 import iate.java.storage.ModelStorage;
 import iate.java.utils.CarFilterCriterion;
@@ -17,6 +18,8 @@ import java.util.*;
 public class CarList extends JFrame {
 
     private JPanel panel1;
+
+    private User user;
     private JButton butApply;
     private JLabel label1;
     private JList list1;
@@ -32,6 +35,7 @@ public class CarList extends JFrame {
     private JTextField vinField;
     private JLabel vin;
     private JButton deleteBut;
+    private JLabel userData;
 
     private CarStorage carStorage = new CarStorage();
 
@@ -52,9 +56,11 @@ public class CarList extends JFrame {
     }
 
 
-    public CarList() {
-
+    public CarList(User user) {
+        this.user = user;
         init();
+
+        userData.setText("C возращением, "+user.getName() + " " + user.getSurname());
 
         for (Integer i = 1990; i < 2023; i++) {
             yearFromBox.addItem(i.toString());
@@ -147,7 +153,7 @@ public class CarList extends JFrame {
         addCarBut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddCar addCar = new AddCar();
+                AddCar addCar = new AddCar(user);
 
                 addCar.show();
 
@@ -230,7 +236,7 @@ public class CarList extends JFrame {
     }
 
     public static void main(String[] args) {
-        new gui.CarList();
+        new gui.CarList(new User(0, "", "", ""));
 
 
     }

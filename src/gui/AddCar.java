@@ -1,6 +1,7 @@
 package gui;
 
 import iate.java.model.Car;
+import iate.java.model.User;
 import iate.java.storage.CarStorage;
 import iate.java.storage.ModelStorage;
 
@@ -22,6 +23,8 @@ public class AddCar extends JFrame {
     private JButton button2;
     private JButton button3;
     private JButton button4;
+
+    private static User user;
     private JButton button5;
     private JComboBox brandBox;
     private JComboBox modelBox;
@@ -40,9 +43,9 @@ public class AddCar extends JFrame {
     boolean shouldFire = false;
 
 
-    public AddCar() {
+    public AddCar(User user) {
 
-
+        this.user = user;
         for (Car i : carStorage.getAllCars()) {
             carListHuman.addElement(i.toString());
         }
@@ -183,7 +186,7 @@ public class AddCar extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                CarList CarForm = new CarList();
+                CarList CarForm = new CarList(user);
                 CarForm.show();
 
                 dispose();
@@ -195,7 +198,7 @@ public class AddCar extends JFrame {
     }
 
     public static void main(String[] args) {
-        new gui.AddCar();
+        new gui.AddCar(user);
 
 
     }

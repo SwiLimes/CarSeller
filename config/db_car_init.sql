@@ -32,10 +32,12 @@ create table car
 );
 
 create table UserBase(
-    id int primary key not null ,
+    id int primary key NOT NULL generated always as identity,
     name varchar(20) not null ,
     surname varchar(20) not null,
     password varchar(20) not null
 );
 
 DROP table car;
+
+DROP table userbase;

@@ -22,6 +22,10 @@ public class User {
         return name;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
     public String getPass() {
         return pass;
     }

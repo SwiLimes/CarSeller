@@ -24,8 +24,12 @@ public class CarStorage {
         return DAO.getFilteredCars(params);
     }
 
-    public User getUser(){
+    public User getUser() {
         return DAO.getUser();
+    }
+
+    public void saveUser(User user) {
+        DAO.addUser(user);
     }
 
     public Car getCarByVin(String vin) {

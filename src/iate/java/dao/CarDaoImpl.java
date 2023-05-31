@@ -57,6 +57,27 @@ public class CarDaoImpl implements CarDao {
             return null;
         });
     }
+    @Override
+    public void addUser(User user) {
+        sqlHelper.execute("INSERT INTO userbase(name, surname, password)" +
+//                "car_type, equipment, engine_id, car_shape, drive_unit, transmission_id, consumption, clearance)" +
+                "VALUES (?, ?, ?);", ps -> {;
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getSurname());
+            ps.setString(3, user.getPass());
+//            ps.setString(5, car.getType().name());
+//            ps.setString(6, car.getEngine().getId());
+//            insertEngine(car.getEngine());
+//            ps.setString(7, car.getShape().name());
+//            ps.setString(8, car.getDriveUnit().name());
+//            ps.setString(9, car.getTransmission().name());
+//            ps.setString(10, car.getEquipment());
+//            ps.setDouble(11, car.getConsumption());
+//            ps.setDouble(12, car.getClearance());
+            ps.execute();
+            return null;
+        });
+    }
 
 //    private void insertEngine(Engine engine) {
 //        sqlHelper.execute("INSERT INTO engine(engine_type, capacity, power, fuel_type) ")
@@ -75,6 +96,8 @@ public class CarDaoImpl implements CarDao {
             return null;
         });
     }
+
+
 
     @Override
     public void deleteCarByVin(String vin) {
@@ -136,6 +159,9 @@ public class CarDaoImpl implements CarDao {
             return cars;
         });
     }
+
+
+
     private void initCreateUpdateStatement(Car car, PreparedStatement ps) throws SQLException {
         ps.setString(1,car.getVin());
         ps.setString(2, car.getBrandName());

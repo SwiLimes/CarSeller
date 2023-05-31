@@ -25,4 +25,6 @@ public interface CarDao {
     List<Car> getCarsByFilter(Filter filter);
 
     List<Car> getFilteredCars(Map<CarFilterCriterion, String> params);
+
+    void addUser(User user);
 }

@@ -20,6 +20,7 @@ public class LoginFrame extends JFrame {
     private JPasswordField passwordField;
     private JButton loginButton;
 
+    private JButton registBut;
 
     private CarStorage carStorage = new CarStorage();
 
@@ -35,13 +36,17 @@ public class LoginFrame extends JFrame {
         passwordLabel = new JLabel("Пароль:");
         passwordField = new JPasswordField();
         loginButton = new JButton("Войти");
+        registBut = new JButton("Зарегистроваться");
+
+
 
         // Настройка компонентов
         nameLabel.setBounds(30, 20, 50, 25);
         nameField.setBounds(80, 20, 180, 25);
         passwordLabel.setBounds(10, 50, 70, 25);
         passwordField.setBounds(80, 50, 180, 25);
-        loginButton.setBounds(100, 90, 100, 25);
+        loginButton.setBounds(20, 90, 100, 25);
+        registBut.setBounds(150,90,120,25);
 
         // Добавление компонентов на окно
         add(nameLabel);
@@ -49,13 +54,14 @@ public class LoginFrame extends JFrame {
         add(passwordLabel);
         add(passwordField);
         add(loginButton);
+        add(registBut);
 
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 User user = carStorage.getUser();
                 if(nameField.getText().equals(user.getName()) && passwordField.getText().equals(user.getPass())){
-                    CarList carList = new CarList();
+                    CarList carList = new CarList(user);
 
                     carList.show();
 
@@ -64,6 +70,17 @@ public class LoginFrame extends JFrame {
                 else {
                     JOptionPane.showMessageDialog(null, "Неправильный пароль");
                 }
+            }
+        });
+
+        registBut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegistrationForm registrationForm = new RegistrationForm();
+
+                registrationForm.show();
+
+                dispose();
             }
         });
 
