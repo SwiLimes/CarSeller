@@ -19,7 +19,7 @@ create table car
     vin             varchar(17) primary key,
     brand_name      varchar(30) not null,
     model_name      varchar(30) not null,
-    car_year        varchar(4)     not null,
+    car_year        int         not null,
 --     car_type        text        not null,
 --     engine_id       integer     not null references engine (id),
 --     car_shape       text        not null,
