@@ -3,7 +3,6 @@ package gui;
 import iate.java.model.Car;
 import iate.java.storage.CarStorage;
 import iate.java.storage.ModelStorage;
-import iate.java.utils.CarFilterCriterion;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -11,27 +10,25 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Objects;
 
-
-public class CarList extends JFrame {
-
+public class AddCar extends JFrame {
     private JPanel panel1;
-    private JButton butApply;
+    private JButton butAdd;
     private JLabel label1;
-    private JList list1;
+
     private JButton button1;
     private JButton button2;
-    private JButton addCarBut;
+    private JButton button3;
     private JButton button4;
     private JButton button5;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
-    private JComboBox yearFromBox;
-    private JComboBox yearToBox;
+    private JComboBox brandBox;
+    private JComboBox modelBox;
+    private JComboBox yearBox;
+
     private JTextField vinField;
     private JLabel vin;
-    private JButton deleteBut;
 
     private CarStorage carStorage = new CarStorage();
 
@@ -42,58 +39,53 @@ public class CarList extends JFrame {
 
     boolean shouldFire = false;
 
-    public void init() {
-        list1.removeAll();
-        carListHuman.removeAllElements();
+
+    public AddCar() {
+
+
         for (Car i : carStorage.getAllCars()) {
             carListHuman.addElement(i.toString());
         }
-        list1.setModel(carListHuman);
-    }
-
-
-    public CarList() {
-
-        init();
 
         for (Integer i = 1990; i < 2023; i++) {
-            yearFromBox.addItem(i.toString());
-            yearToBox.addItem(i.toString());
+            yearBox.addItem(i.toString());
+            //yearToBox.addItem(i.toString());
             yearList.add(i);
         }
 
         for (String i : modelStorage.getAllBrands()) {
-            comboBox1.addItem(i);
+            brandBox.addItem(i);
         }
 
-        for (String i : modelStorage.getModelsByBrand(Objects.requireNonNull(comboBox1.getSelectedItem()).toString())) {
-            comboBox2.addItem(i);
+        for (String i : modelStorage.getModelsByBrand(Objects.requireNonNull(brandBox.getSelectedItem()).toString())) {
+            modelBox.addItem(i);
         }
-        comboBox1.addItemListener(e -> {
+
+        brandBox.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 // проверяем, что выбран новый элемент
-                comboBox2.removeAllItems();
+                modelBox.removeAllItems();
                 for (String i : modelStorage.getModelsByBrand((String) e.getItem())) {
-                    comboBox2.addItem(i);
+                    modelBox.addItem(i);
                 }
             }
         });
 
-        yearToBox.addItemListener(e -> {
+ /*       yearToBox.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 if (!shouldFire) {
                     shouldFire = true;
-                    yearFromBox.removeAllItems();
+                    yearBox.removeAllItems();
                     for (Integer i : yearList) {
                         if (i <= Integer.parseInt((String) e.getItem()))
-                            yearFromBox.addItem(i.toString());
+                            yearBox.addItem(i.toString());
                     }
                     shouldFire = false;
                 }
             }
         });
 
-        yearFromBox.addItemListener(e -> {
+        yearBox.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 if (!shouldFire) {
                     shouldFire = true;
@@ -107,51 +99,14 @@ public class CarList extends JFrame {
                 }
             }
         });
+*/
 
-        butApply.addActionListener(new ActionListener() {
+
+        butAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                list1.removeAll();
-                carListHuman.removeAllElements();
-                if (!Objects.equals(vinField.getText(), "")) {
-                    carListHuman.addElement(carStorage.getCarByVin(vinField.getText()).toString());
-                    list1.setModel(carListHuman);
-                } else {
-                    Map<CarFilterCriterion, String> params = new LinkedHashMap<>() {{
-                        put(CarFilterCriterion.BRAND, Objects.requireNonNull(comboBox1.getSelectedItem()).toString());
-                        put(CarFilterCriterion.MODEL, Objects.requireNonNull(comboBox2.getSelectedItem()).toString());
-                        put(CarFilterCriterion.YEAR_FROM, Objects.requireNonNull(yearFromBox.getSelectedItem()).toString());
-                        put(CarFilterCriterion.YEAR_TO, Objects.requireNonNull(yearToBox.getSelectedItem()).toString());
-                    }};
-                    for (Car i : carStorage.getCarByFilter(params)) {
-                        carListHuman.addElement(i.toString());
-                    }
-                    if (carListHuman.isEmpty()) {
-                        carListHuman.addElement("К сожалению по данному фильтру машин не найдено");
-                    } else {
-                        list1.setModel(carListHuman);
-                    }
-                }
-            }
-        });
-
-        deleteBut.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String vin = list1.getSelectedValue().toString().substring(list1.getSelectedValue().toString().indexOf("vin='") + 5, list1.getSelectedValue().toString().indexOf("', brandName"));
-                carStorage.deleteCar(vin);
-                init();
-            }
-        });
-
-        addCarBut.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AddCar addCar = new AddCar();
-
-                addCar.show();
-
-                dispose();
+                Car car = new Car(vinField.getText(), brandBox.getSelectedItem().toString(), modelBox.getSelectedItem().toString(), yearBox.getSelectedItem().toString());
+                carStorage.saveCar(car);
 
             }
         });
@@ -181,7 +136,7 @@ public class CarList extends JFrame {
         Image image4 = newcar.getImage();
         Image NewIcon4 = image4.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
         newcar = new ImageIcon(NewIcon4);
-        addCarBut.setIcon(newcar);
+        button3.setIcon(newcar);
 
         ImageIcon info = new ImageIcon("Icons/info.png");
         Image image5 = info.getImage();
@@ -196,7 +151,7 @@ public class CarList extends JFrame {
         button5.setIcon(exit);
         //endregion
 
-        addCarBut.setPreferredSize(new Dimension(25, 25));
+        button3.setPreferredSize(new Dimension(25, 25));
         button4.setPreferredSize(new Dimension(25, 25));
         button5.setPreferredSize(new Dimension(25, 25));
         button2.setPreferredSize(new Dimension(25, 25));
@@ -214,8 +169,6 @@ public class CarList extends JFrame {
         setVisible(true);
 
 
-        //region ACTIONS
-
         button5.addActionListener(new ActionListener() {
                                       @Override
                                       public void actionPerformed(ActionEvent e) {
@@ -226,11 +179,23 @@ public class CarList extends JFrame {
 
         );
 
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                CarList CarForm = new CarList();
+                CarForm.show();
+
+                dispose();
+            }
+
+        });
+
         //endregion
     }
 
     public static void main(String[] args) {
-        new gui.CarList();
+        new gui.AddCar();
 
 
     }

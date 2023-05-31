@@ -27,5 +27,13 @@ public class CarStorage {
         return DAO.getCarByVin(vin);
     }
 
+    public void saveCar(Car car) {
+        DAO.addCar(car);
+    }
+
+    public void deleteCar(String vin) {
+        DAO.deleteCarByVin(vin);
+    }
+
 
 }

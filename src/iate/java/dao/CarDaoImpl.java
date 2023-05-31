@@ -41,7 +41,7 @@ public class CarDaoImpl implements CarDao {
             ps.setString(1, car.getVin());
             ps.setString(2, car.getBrandName());
             ps.setString(3, car.getModelName());
-            ps.setString(4, car.getYear());
+            ps.setInt(4, Integer.parseInt(car.getYear()));
 //            ps.setString(5, car.getType().name());
 //            ps.setString(6, car.getEngine().getId());
 //            insertEngine(car.getEngine());
@@ -51,8 +51,8 @@ public class CarDaoImpl implements CarDao {
 //            ps.setString(10, car.getEquipment());
 //            ps.setDouble(11, car.getConsumption());
 //            ps.setDouble(12, car.getClearance());
-//            initCreateUpdateStatement(car, ps);
-//            ps.execute();
+      initCreateUpdateStatement(car, ps);
+    ps.execute();
             return null;
         });
     }
@@ -124,9 +124,10 @@ public class CarDaoImpl implements CarDao {
         });
     }
     private void initCreateUpdateStatement(Car car, PreparedStatement ps) throws SQLException {
-        ps.setString(1, car.getBrandName());
-        ps.setString(2, car.getModelName());
-        ps.setString(3, car.getYear());
+        ps.setString(1,car.getVin());
+        ps.setString(2, car.getBrandName());
+        ps.setString(3, car.getModelName());
+        ps.setInt(4, Integer.parseInt(car.getYear()));
 //        ps.setString(5, car.getType().name());
 //        ps.setString(6, car.getEquipment());
 //        ps.setString(7, car.getEngine().name());

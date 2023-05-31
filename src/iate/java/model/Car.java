@@ -122,7 +122,7 @@ public class Car {
     public String toString() {
         return "Машина{" +
                 "vin='" + vin + '\'' +
-                ", brandName='" + brandName + '\'' +
+                ", brandName='" + brandName + '\'' +'\''+
                 ", modelName='" + modelName + '\'' +
                 ", year='" + year + '\'' +
 //                ", type=" + type +

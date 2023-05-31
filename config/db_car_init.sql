@@ -30,3 +30,5 @@ create table car
 --     clearance       numeric     not null,
     foreign key (brand_name, model_name) references brand
 );
+
+DROP table car;
