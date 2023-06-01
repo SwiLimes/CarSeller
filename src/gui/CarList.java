@@ -162,6 +162,18 @@ public class CarList extends JFrame {
             }
         });
 
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AutobazaInfoWindow addCar = new AutobazaInfoWindow();
+
+                addCar.show();
+
+                //dispose();
+
+            }
+        });
+
 
         //region IMAGE SCALING
         ImageIcon icon = new ImageIcon("Icons/menu.png");
